@@ -62,13 +62,13 @@
     <div class="menulateral">
         <ul id="menu" class="mt-4">
             <li>
-                <div id="tb-usuario">tabla de usurio</div>
+                <div id="tb-usuario">tabla de usuarios</div>
             </li>
             <li>
                 <div id="tb-ventas">tabla de ventas</div>
             </li>
             <li>
-                <div id="tb-almacen">tabla de alamcene</div>
+                <div id="tb-almacen">tabla de almacen</div>
             </li>
             <li class="ui-state-disabled">
                 <div>tabla productos</div>
