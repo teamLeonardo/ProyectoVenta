@@ -61,8 +61,7 @@
             //id = $(_this).closest('tr').find("td:first-child").text();
             id = $(_this).closest('tr').attr("id");
             estado = true;
-            nColumnas = $("tr#" + id + " td").length;
-            console.log(nColumnas);
+            
         }
     });
     //#region efecto barra
@@ -83,18 +82,18 @@
             }
         })
     //#endregion
-    $("#editar").on("click", function() {
-        //$( "#dialog-form" ).dialog( "open" );
-    });
+    
 
     $("#editar").click(function() {
-        //recuperar datos
-        console.log(nColumnas);
-        for (var index = 0; index < nColumnas; index++) {
-            informacion[index] = $("tr#" + id+" td").eq(index).text();
-        }
-        console.log(informacion.String);
-
+        $.ajax({
+            type: "post",
+            url: "modal/modal.php",
+            data: {"tabla":"usuario","id":id},
+            dataType: "html",
+            success: function (response) {
+                $(".modal-body").html(response);
+            }
+        });
 
     });
 </script>

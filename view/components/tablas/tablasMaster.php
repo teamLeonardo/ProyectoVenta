@@ -7,6 +7,7 @@
     .cont-tabla {
         display: flex;
     }
+
     label,
     input {
         display: block;
@@ -103,22 +104,8 @@
 </ol>
 <!-- #endregion -->
 <!-- #region  dialogo de formulario-->
-<div id="dialog-form" title="Create new user">
-    <p class="validateTips">All form fields are required.</p>
-
-    <form>
-        <fieldset>
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" value="Jane Smith" class="text ui-widget-content ui-corner-all">
-            <label for="email">Email</label>
-            <input type="text" name="email" id="email" value="jane@smith.com" class="text ui-widget-content ui-corner-all">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" value="xxxxxxx" class="text ui-widget-content ui-corner-all">
-
-            <!-- Allow form submission with keyboard without duplicating the dialog button -->
-            <input type="submit" style="position:absolute; top:-1000px">
-        </fieldset>
-    </form>
+<div class="modal-body">
+    
 </div>
 <!-- #endregion -->
 <script>
@@ -132,29 +119,28 @@
         tabla = $(this).attr("id");
         $(".tablas-contenedor").load("view/components/tablas/cont-Tabla-Master/" + tabla + ".php");
     });
-    
-    $( "#dialog-form" ).dialog({
+
+    $("#dialog-form").dialog({
         autoOpen: false,
-      show: {
-        effect: "blind",
-        duration: 1000
-      },
-      hide: {
-        effect: "explode",
-        duration: 1000
-      }
+        show: {
+            effect: "blind",
+            duration: 1000
+        },
+        hide: {
+            effect: "explode",
+            duration: 1000
+        }
 
     });
-    
-        
-    
-    $( "#eliminar" ).on( "click", function() {
+
+
+
+    $("#eliminar").on("click", function() {
         alertify.confirm('confirmacion de edicion', 'los id que a editado son ', function() {
             alertify.success("fue eliminado");
-        },function() {
+        }, function() {
             alertify.error("cancelado");
         });
     });
     //abrir modal co informacion
-    
 </script>
