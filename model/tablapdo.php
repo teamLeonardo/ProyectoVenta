@@ -6,8 +6,8 @@ class phppdo
     {
         @$SERVERNAME = gethostname();
         //
-        $conn = new PDO("mysql:host=localhost;dbname=$nombreBD", "root", "");
-       // $conn = new PDO("sqlsrv:server=$SERVERNAME ; Database=$nombreBD", "XOSCAR", "QUIPU2846+*");
+        //$conn = new PDO("mysql:host=localhost;dbname=$nombreBD", "root", "");
+       $conn = new PDO("sqlsrv:server=$SERVERNAME ; Database=$nombreBD", "XOSCAR", "QUIPU2846+*");
         //PARAMETROS de conexion base de datos , uid ,pwd
         
         //abrimos una condicional para saber si se esta conctando a modelo
