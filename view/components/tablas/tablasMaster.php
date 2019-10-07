@@ -57,6 +57,7 @@
     }
 </style>
 
+
 <!--tabla y menu contenedor-->
 <div class="cont-tabla pt-5">
     <div class="menulateral">
@@ -146,9 +147,7 @@
     });
     
         
-    $( "#editar" ).on( "click", function() {
-      $( "#dialog-form" ).dialog( "open" );
-    });
+    
     $( "#eliminar" ).on( "click", function() {
         alertify.confirm('confirmacion de edicion', 'los id que a editado son ', function() {
             alertify.success("fue eliminado");
@@ -156,4 +155,6 @@
             alertify.error("cancelado");
         });
     });
+    //abrir modal co informacion
+    
 </script>

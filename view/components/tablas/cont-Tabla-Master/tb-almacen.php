@@ -14,6 +14,6 @@ $obj = new phppdo;
 </style>
 
 <table id="tbl-almacen" class="table table-striped table-bordered" style="width:100%" cellspacing="0">
-    <?php //$obj->listarTb('DISTRIBUIDORAGOLIMUNDOSAC','SELECT * FROM tbitems');?>
+    <?php $obj->listarTb('DISTRIBUIDORAGOLIMUNDOSAC','SELECT * FROM tbitems');?>
 
 </table>
