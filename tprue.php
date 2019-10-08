@@ -48,7 +48,6 @@
     <ul id="sortable">
 <<<<<<< HEAD
         <li class="ui-state-default"><span class="fas fa-plus-square"></span>Item 1saasd</li>
-        <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 5</li>
         <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 6</li>
         <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 7</li>
     </ul>
