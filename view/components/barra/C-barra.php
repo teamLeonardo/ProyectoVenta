@@ -1,7 +1,7 @@
 <div class="navigation">
   <div><a id="inicio" href="#inicio">inicio</a></div>
-  <div><a id="tablas" href="#tablas">tablas</a></div>
-  <div><a id="producto" href="#productos">productos</a></div>
+  <div><a id="ventas" href="#ventas">ventas </a></div>
+  <div><a id="inventario" href="#inventario">inventario</a></div>
   <div><span class="expandir-navigator"><i class="fas fa-align-right"></i></span></div>
 </div>
 
@@ -16,18 +16,19 @@ $(".expandir-navigator").click(function () {
     
     $("main").load("view/components/inicio/presentacion.php");
   });
-  $('#tablas').click(function() {
+  $('#ventas').click(function() {
     $('main').removeClass(function() {
       return $(this).attr('class');
-    }).addClass('tablas');
+    }).addClass('ventas');
     
-    $("main").load("view/components/tablas/tablasMaster.php");
+    $("main").load("view/components/ventas/index.php");
   });
-  $('#producto').click(function() {
+  $('#inventario').click(function() {
     $('main').removeClass(function() {
       return $(this).attr('class');
-    }).addClass('producto');
+    }).addClass('ventas');
     
-    $("main").load("view/components/productos/productos.php");
+    $("main").load("view/components/inventario/index.php");
   });
+ 
 </script>
