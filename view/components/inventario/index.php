@@ -111,7 +111,7 @@
 <!-- #endregion -->
 <!-- #region  dialogo de formulario-->
 <div class="modal-body">
-    
+
 </div>
 <!-- #endregion -->
 <script>
@@ -120,12 +120,13 @@
     });
     $("#menu").menu();
     var tabla;
+    //#region tabla
     $("ul li div").click(function() {
         tabla = null;
         tabla = $(this).attr("id");
         $(".tablas-contenedor").load("view/components/inventario/tablas-inventario/" + tabla + ".php");
     });
-
+    //#endregion
     $("#dialog-form").dialog({
         autoOpen: false,
         show: {
