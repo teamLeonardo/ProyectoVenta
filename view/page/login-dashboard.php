@@ -101,8 +101,6 @@
             color: #777;
         }
 
-        /* Fallback for Edge
--------------------------------------------------- */
 
         @supports (-ms-ime-align: auto) {
             .form-label-group>label {
@@ -113,9 +111,6 @@
                 color: #777;
             }
         }
-
-        /* Fallback for IE
--------------------------------------------------- */
 
         @media all and (-ms-high-contrast: none),
         (-ms-high-contrast: active) {
@@ -163,10 +158,15 @@
             </div>
         </div>
     </div>
-
+    <script src="../../lib/jquery.js"></script>
     <script src="../../lib/bootstrap/bootstrap.min.js"></script>
 
     <script src="../../lib/bootstrap/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            
+        });
+    </script>
 </body>
 
 </html>

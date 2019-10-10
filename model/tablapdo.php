@@ -116,15 +116,19 @@ class phppdo
     function correrConsulta( $consulta = '', $parametros = array())
     {
         try {
+            $arrayName = array();
             $conn = $this->connect($this->base);
             $query = $conn->prepare($consulta);
             $query->execute($parametros);
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
-            return $result;
+            $arrayName['respuesta'] = $query;
+            $arrayName['resultadp'] = $result;
+            return $arrayName;
             $conn = null;
-            $valor = null;
+            $result = null;
         } catch (Exception $e) {
             die(print_r($e->getMessage()));
         }
     }
+ 
 }
