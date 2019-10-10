@@ -1,28 +1,28 @@
 <?php
 include_once 'Conexion/connection.php';
 
-class phppdo extends CONEXION
+class phppdo 
 {
-    function conexionpdo($nombreBD = '')
+    var $base;
+    public function __construct($basedatos)
     {
-        @$SERVERNAME = gethostname();
-        //
-        //$conn = new PDO("mysql:host=localhost;dbname=$nombreBD", "root", "");
-        $conn = new PDO("sqlsrv:server=$SERVERNAME ; Database=$nombreBD", "XOSCAR", "QUIPU2846+*");
-        //PARAMETROS de conexion base de datos , uid ,pwd
-
-        //abrimos una condicional para saber si se esta conctando a modelo
-        if (!$conn) {
-            //no retorna nada
-        } else {
-            //retorna la conexion
-            return $conn;
-        }
+        $this->base = $basedatos;
     }
-    public function listarTb($bd, $consulta, $parametros = array(), $estilos = array())
+    public function connect(){
+
+        $connect = new PDO("sqlsrv:Server=".HOST.";Database={$this->base}","".USER."" , "".PASS."");
+        
+        if (!$connect) {
+            echo "\nPDO::errorInfo():\n";
+            print_r('DBTOTAL'->errorInfo());
+        }else{
+            return $connect;
+        }
+    }  
+    public function listarTb( $consulta, $parametros = array(), $estilos = array())
     {
         try {
-            $conn = $this->connect($bd);
+            $conn = $this->connect($this->base);
             $query = $conn->prepare($consulta);
 
             $query->execute($parametros);
@@ -120,8 +120,9 @@ class phppdo extends CONEXION
         try {
             $conn = $this->conexionpdo($bd);
             $query = $conn->prepare($consulta);
-            $valor =  $query->execute($parametros);
-            return $valor;
+            $query->execute($parametros);
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
             $conn = null;
             $valor = null;
         } catch (Exception $e) {
