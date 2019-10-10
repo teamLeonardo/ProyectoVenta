@@ -2,18 +2,6 @@ USE [master]
 GO
 /****** Object:  Database [EmpresaControl]    Script Date: 10/10/2019 3:41:51 AM ******/
 CREATE DATABASE [EmpresaControl]
- CONTAINMENT = NONE
- ON  PRIMARY 
-( NAME = N'EmpresaControl', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\DATA\EmpresaControl.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
- LOG ON 
-( NAME = N'EmpresaControl_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\DATA\EmpresaControl_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
-GO
-ALTER DATABASE [EmpresaControl] SET COMPATIBILITY_LEVEL = 140
-GO
-IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
-begin
-EXEC [EmpresaControl].[dbo].[sp_fulltext_database] @action = 'enable'
-end
 GO
 ALTER DATABASE [EmpresaControl] SET ANSI_NULL_DEFAULT OFF 
 GO
@@ -74,8 +62,6 @@ GO
 ALTER DATABASE [EmpresaControl] SET DELAYED_DURABILITY = DISABLED 
 GO
 EXEC sys.sp_db_vardecimal_storage_format N'EmpresaControl', N'ON'
-GO
-ALTER DATABASE [EmpresaControl] SET QUERY_STORE = OFF
 GO
 USE [EmpresaControl]
 GO

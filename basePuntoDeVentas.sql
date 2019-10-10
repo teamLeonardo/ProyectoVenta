@@ -2,18 +2,6 @@ USE [master]
 GO
 /****** Object:  Database [PuntoDeVenta]    Script Date: 10/10/2019 3:39:41 AM ******/
 CREATE DATABASE [PuntoDeVenta]
- CONTAINMENT = NONE
- ON  PRIMARY 
-( NAME = N'PuntoDeVenta', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\DATA\PuntoDeVenta.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
- LOG ON 
-( NAME = N'PuntoDeVenta_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\DATA\PuntoDeVenta_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
-GO
-ALTER DATABASE [PuntoDeVenta] SET COMPATIBILITY_LEVEL = 140
-GO
-IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
-begin
-EXEC [PuntoDeVenta].[dbo].[sp_fulltext_database] @action = 'enable'
-end
 GO
 ALTER DATABASE [PuntoDeVenta] SET ANSI_NULL_DEFAULT OFF 
 GO
@@ -74,8 +62,6 @@ GO
 ALTER DATABASE [PuntoDeVenta] SET DELAYED_DURABILITY = DISABLED 
 GO
 EXEC sys.sp_db_vardecimal_storage_format N'PuntoDeVenta', N'ON'
-GO
-ALTER DATABASE [PuntoDeVenta] SET QUERY_STORE = OFF
 GO
 USE [PuntoDeVenta]
 GO
