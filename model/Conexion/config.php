@@ -2,7 +2,7 @@
     define('TIPO','');
     define('HOST',gethostname());
     define('USER','sa');
-    define('PASS','2087390148');
-    define('BASE','DBTOTAL');
+    define('PASS','123');
+    define('BASE','master');
     define('PORT','8080');
 ?>
