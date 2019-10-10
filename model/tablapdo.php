@@ -1,6 +1,5 @@
 <?php
-include_once 'Conexion/connection.php';
-
+include_once 'Conexion/config.php';
 class phppdo 
 {
     var $base;
@@ -14,7 +13,6 @@ class phppdo
         
         if (!$connect) {
             echo "\nPDO::errorInfo():\n";
-            print_r('DBTOTAL'->errorInfo());
         }else{
             return $connect;
         }
@@ -115,10 +113,10 @@ class phppdo
             die(print_r($e->getMessage()));
         }
     }
-    function correrConsulta($bd = '', $consulta = '', $parametros = array())
+    function correrConsulta( $consulta = '', $parametros = array())
     {
         try {
-            $conn = $this->conexionpdo($bd);
+            $conn = $this->connect($this->base);
             $query = $conn->prepare($consulta);
             $query->execute($parametros);
             $result = $query->fetchAll(PDO::FETCH_ASSOC);

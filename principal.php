@@ -16,29 +16,21 @@
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         <div class="app-header header-shadow" id="header-app-framer">
-
+            <?php include_once 'view/components/barra-t/barra.php';?>
         </div>
         <div class="ui-theme-settings">
+            <?php include_once 'view/components/menu/menu.php';?>
 
         </div>
         <div class="app-main">
+            <?php include_once 'view/components/main/main.php';?>
 
         </div>
     </div>
     <script type="text/javascript" src="./assets/scripts/main.js"></script>
     
     <script src="lib/jquery.js"></script>
-    <script>
-
-        $(document).ready(function () {
-            
-            $("#header-app-framer").load("view/components/barra-t/barra.php");
-            
-            $(".ui-theme-settings").load("view/components/menu/menu.php");
-            
-            $(".app-main").load("view/components/main/main.php");
-        });
-    </script>
+    
 </body>
 
 </html>
