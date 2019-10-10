@@ -121,8 +121,11 @@ class phppdo
             $query = $conn->prepare($consulta);
             $query->execute($parametros);
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            if (is_bool($query)) {
+                
             $arrayName['respuesta'] = $query;
-            $arrayName['resultadp'] = $result;
+            $arrayName['resultado'] = $result;
+            }
             return $arrayName;
             $conn = null;
             $result = null;

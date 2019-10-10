@@ -146,37 +146,37 @@
                     </div>
 
                     <div class="card-body">
-                        <div class="form-signin">
+                        <form action="../../controller/control-pag.php" method="GET" class="form-signin">
                             <div class="form-label-group">
-                                <input type="text" id="usuario" class="form-control" placeholder="usuario" required autofocus>
+                                <input type="text" id="usuario" name="usuario" class="form-control" placeholder="usuario" required autofocus>
                                 <label for="usuario">usuario</label>
                             </div>
                             <div class="form-label-group">
-                                <input type="password" id="contra" class="form-control" placeholder="Contraseña" required>
+                                <input type="password" id="contra" name="contra" class="form-control" placeholder="Contraseña" required>
                                 <label for="contra">Contraseña</label>
                             </div>
                             <div class="form-label-group">
-                                <input type="text" id="nombre" class="form-control" placeholder="nombre" required autofocus>
+                                <input type="text" id="nombre" name="nombre" class="form-control" placeholder="nombre" required autofocus>
                                 <label for="nombre">nombre</label>
                             </div>
 
                             <div class="form-label-group">
-                                <input type="text" id="apellido" class="form-control" placeholder="apellido" required autofocus>
+                                <input type="text" id="apellido" name="apellido" class="form-control" placeholder="apellido" required autofocus>
                                 <label for="apellido">apellido</label>
                             </div>
 
                             <div class="form-label-group">
-                                <input type="text" id="dni" class="form-control" placeholder="dni" required autofocus>
+                                <input type="text" id="dni" name="dni" class="form-control" placeholder="dni" required autofocus>
                                 <label for="dni">dni</label>
                             </div>
                             <hr>
                             <div class="row justify-content-around">
                                 <div class="form-label-group col-6">
-                                    <input type="text" id="nempresa" class="form-control" placeholder="nombre empresa" required autofocus>
+                                    <input type="text" id="nempresa" name="nempresa" class="form-control" placeholder="nombre empresa" required autofocus>
                                     <label for="nempresa">nombre empresa</label>
                                 </div>
                                 <div class="form-label-group col-4">
-                                    <input type="text" id="ruc" class="form-control" placeholder="ruc empresa" required autofocus>
+                                    <input type="text" id="ruc" name="ruc" class="form-control" placeholder="ruc empresa" required autofocus>
                                     <label for="ruc">ruc empresa</label>
                                 </div>
                             </div>
@@ -184,7 +184,7 @@
                             <button class="btn btn-lg btn-primary btn-block text-uppercase" id="btn-registrar" type="submit">registrar</button>
                             <a class="d-block text-center small" href="#">login</a>
 
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -195,14 +195,7 @@
 
     <script src="../../lib/bootstrap/bootstrap.bundle.min.js"></script>
 
-    <script>
-    $(document).ready(function () {
-        $('#btn-registrar').click(function(){
-window.location = "../../controller/control-pag.php?nombre="+$("#nombre").val()+"&apellido="+$("#apellido").val()+"&dni="+$("#dni").val()+"&usuario="+$("#usuario").val()+"&contra="+$("#contra").val()+"&nempresa="+$("#nempresa").val()+"&ruc="+$("#ruc").val()+"";
-            
-        });
-    });
-    </script>
+    
 </body>
 
 </html>

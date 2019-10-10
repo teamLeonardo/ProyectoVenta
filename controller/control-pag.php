@@ -13,11 +13,13 @@ if ($_GET['validacionGeneral']=true) {
     $_GET['contra'],
     $_GET['nempresa'],
     $_GET['ruc']));
+    var_dump($respuesta);
     if ($respuesta[0] == true) {
         $_SESSION['empresa'] = $respuesta[1][0];
-        header('../view/page/dashboard.php');
+        
+        //header('../view/page/dashboard.php');
     }else {
-        header('../view/page/pag-register.php');
+        //header('../view/page/pag-register.php');
     }
 }
 ?>
