@@ -19,7 +19,7 @@
             <?php include_once 'view/components/barra-t/barra.php';?>
         </div>
         <div class="ui-theme-settings">
-            <?php include_once 'view/components/menu/menu.php';?>
+            <?php include_once 'view/components/settings/settings-pag.php';?>
 
         </div>
         <div class="app-main">
