@@ -1,3 +1,4 @@
+<!--menu de lateral-->
 <div class="app-sidebar sidebar-shadow">
     <div class="app-header__logo">
         <div class="logo-src"></div>
@@ -32,28 +33,28 @@
     <div class="scrollbar-sidebar">
         <div class="app-sidebar__inner">
             <ul class="vertical-nav-menu">
-                <li class="app-sidebar__heading">Dashboards</li>
+                <li class="app-sidebar__heading">inicio</li>
                 <li>
                     <a href="index.html" class="mm-active">
-                        <i class="metismenu-icon pe-7s-rocket"></i> Dashboard Example 1
+                        <i class="metismenu-icon pe-7s-rocket"></i>control principal
                     </a>
                 </li>
-                <li class="app-sidebar__heading">UI Components</li>
+                <li class="app-sidebar__heading">ventas </li>
                 <li>
                     <a href="#">
-                        <i class="metismenu-icon pe-7s-diamond"></i> Elements
+                        <i class="metismenu-icon pe-7s-diamond"></i>registrar venta
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                     </a>
                     <ul>
                         <li>
                             <a href="elements-buttons-standard.html">
-                                <i class="metismenu-icon"></i> Buttons
+                                <i class="metismenu-icon"></i>registrar cliente
                             </a>
                         </li>
                         <li>
                             <a href="elements-dropdowns.html">
                                 <i class="metismenu-icon">
-                                                </i>Dropdowns
+                                                </i>promar jesus sineros
                             </a>
                         </li>
                         <li>
@@ -216,9 +217,9 @@
         </div>
     </div>
 </div>
+<!--contenedor principal-->
 <div class="app-main__outer">
     <div class="app-main__inner">
-
         <div class="row">
             <div class="col-md-6 col-xl-4">
                 <div class="card mb-3 widget-content bg-midnight-bloom">
