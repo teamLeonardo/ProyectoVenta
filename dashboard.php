@@ -30,6 +30,7 @@
     <script type="text/javascript" src="./assets/scripts/main.js"></script>
     
     <script src="lib/jquery.js"></script>
+    <script src="cargarContenedor.js"></script>
     
 </body>
 

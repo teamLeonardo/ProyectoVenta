@@ -35,76 +35,49 @@
             <ul class="vertical-nav-menu">
                 <li class="app-sidebar__heading">inicio</li>
                 <li>
-                    <a href="index.html" class="mm-active">
-                        <i class="metismenu-icon pe-7s-rocket"></i>control principal
+                    <a href="" id="inicio">
+                        <i class="metismenu-icon pe-7s-diamond"></i>control principal
                     </a>
                 </li>
-                <li class="app-sidebar__heading">ventas </li>
-                <li>
-                    <a href="#">
-                        <i class="metismenu-icon pe-7s-diamond"></i>registrar venta
+                <li class="app-sidebar__heading">Modulos</li>
+                <li id="modulo-ventas" class="mm-active" >
+                    <a href="">
+                        <i class="metismenu-icon pe-7s-calculator"></i>Modulo de Ventas
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                     </a>
-                    <ul>
+                    <ul id="modulo-sub-ventas" class="mm-show">
                         <li>
-                            <a href="elements-buttons-standard.html">
-                                <i class="metismenu-icon"></i>registrar cliente
+                            <a href="" id="register-cliente" class="mm-active">
+                                <i class="metismenu-icon" ></i>Registro de Cliente
                             </a>
                         </li>
                         <li>
-                            <a href="elements-dropdowns.html">
-                                <i class="metismenu-icon">
-                                                </i>promar jesus sineros
+                            <a href="" id="register-Venta">
+                                <i class="metismenu-icon"></i>Registro de Venta 
                             </a>
                         </li>
                         <li>
-                            <a href="elements-icons.html">
-                                <i class="metismenu-icon">
-                                                </i>Icons
+                            <a href="" id="Vista-Productos">
+                                <i class="metismenu-icon"></i>Vista de Productos
                             </a>
                         </li>
                         <li>
-                            <a href="elements-badges-labels.html">
-                                <i class="metismenu-icon">
-                                                </i>Badges
-                            </a>
-                        </li>
-                        <li>
-                            <a href="elements-cards.html">
-                                <i class="metismenu-icon">
-                                                </i>Cards
-                            </a>
-                        </li>
-                        <li>
-                            <a href="elements-list-group.html">
-                                <i class="metismenu-icon">
-                                                </i>List Groups
-                            </a>
-                        </li>
-                        <li>
-                            <a href="elements-navigation.html">
-                                <i class="metismenu-icon">
-                                                </i>Navigation Menus
-                            </a>
-                        </li>
-                        <li>
-                            <a href="elements-utilities.html">
-                                <i class="metismenu-icon">
-                                                </i>Utilities
+                            <a href="" id="Vista-perdidas">
+                                <i class="metismenu-icon"></i>Vista de perdidas
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li>
+                <li id="modulo-inventario">
                     <a href="#">
-                        <i class="metismenu-icon pe-7s-car"></i> Components
+                        <i class="metismenu-icon pe-7s-box1"></i> Modulo de inventario
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                     </a>
-                    <ul>
+                    <ul  id="modulo-sub-inventario" >
                         <li>
                             <a href="components-tabs.html">
                                 <i class="metismenu-icon">
-                                                </i>Tabs
+                                                </i>Vista de Productos
                             </a>
                         </li>
                         <li>
@@ -180,39 +153,7 @@
                         <i class="metismenu-icon pe-7s-display2"></i> Dashboard Boxes
                     </a>
                 </li>
-                <li class="app-sidebar__heading">Forms</li>
-                <li>
-                    <a href="forms-controls.html">
-                        <i class="metismenu-icon pe-7s-mouse">
-                                        </i>Forms Controls
-                    </a>
-                </li>
-                <li>
-                    <a href="forms-layouts.html">
-                        <i class="metismenu-icon pe-7s-eyedropper">
-                                        </i>Forms Layouts
-                    </a>
-                </li>
-                <li>
-                    <a href="forms-validation.html">
-                        <i class="metismenu-icon pe-7s-pendrive">
-                                        </i>Forms Validation
-                    </a>
-                </li>
-                <li class="app-sidebar__heading">Charts</li>
-                <li>
-                    <a href="charts-chartjs.html">
-                        <i class="metismenu-icon pe-7s-graph2">
-                                        </i>ChartJS
-                    </a>
-                </li>
-                <li class="app-sidebar__heading">PRO Version</li>
-                <li>
-                    <a href="https://dashboardpack.com/theme-details/architectui-dashboard-html-pro/" target="_blank">
-                        <i class="metismenu-icon pe-7s-graph2">
-                                        </i> Upgrade to PRO
-                    </a>
-                </li>
+                
             </ul>
         </div>
     </div>
@@ -220,7 +161,8 @@
 <!--contenedor principal-->
 <div class="app-main__outer">
     <div class="app-main__inner">
-        <div class="row">
+        
+        <!--<div class="row">
             <div class="col-md-6 col-xl-4">
                 <div class="card mb-3 widget-content bg-midnight-bloom">
                     <div class="widget-content-wrapper text-white">
@@ -260,91 +202,9 @@
                     </div>
                 </div>
             </div>
-            <div class="d-xl-none d-lg-block col-md-6 col-xl-4">
-                <div class="card mb-3 widget-content bg-premium-dark">
-                    <div class="widget-content-wrapper text-white">
-                        <div class="widget-content-left">
-                            <div class="widget-heading">Products Sold</div>
-                            <div class="widget-subheading">Revenue streams</div>
-                        </div>
-                        <div class="widget-content-right">
-                            <div class="widget-numbers text-warning"><span>$14M</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
         </div>
-        <div class="row">
-            <div class="col-md-6 col-xl-4">
-                <div class="card mb-3 widget-content">
-                    <div class="widget-content-outer">
-                        <div class="widget-content-wrapper">
-                            <div class="widget-content-left">
-                                <div class="widget-heading">Total Orders</div>
-                                <div class="widget-subheading">Last year expenses</div>
-                            </div>
-                            <div class="widget-content-right">
-                                <div class="widget-numbers text-success">1896</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-xl-4">
-                <div class="card mb-3 widget-content">
-                    <div class="widget-content-outer">
-                        <div class="widget-content-wrapper">
-                            <div class="widget-content-left">
-                                <div class="widget-heading">Products Sold</div>
-                                <div class="widget-subheading">Revenue streams</div>
-                            </div>
-                            <div class="widget-content-right">
-                                <div class="widget-numbers text-warning">$3M</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-xl-4">
-                <div class="card mb-3 widget-content">
-                    <div class="widget-content-outer">
-                        <div class="widget-content-wrapper">
-                            <div class="widget-content-left">
-                                <div class="widget-heading">Followers</div>
-                                <div class="widget-subheading">People Interested</div>
-                            </div>
-                            <div class="widget-content-right">
-                                <div class="widget-numbers text-danger">45,9%</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="d-xl-none d-lg-block col-md-6 col-xl-4">
-                <div class="card mb-3 widget-content">
-                    <div class="widget-content-outer">
-                        <div class="widget-content-wrapper">
-                            <div class="widget-content-left">
-                                <div class="widget-heading">Income</div>
-                                <div class="widget-subheading">Expected totals</div>
-                            </div>
-                            <div class="widget-content-right">
-                                <div class="widget-numbers text-focus">$147</div>
-                            </div>
-                        </div>
-                        <div class="widget-progress-wrapper">
-                            <div class="progress-bar-sm progress-bar-animated-alt progress">
-                                <div class="progress-bar bg-info" role="progressbar" aria-valuenow="54" aria-valuemin="0" aria-valuemax="100" style="width: 54%;"></div>
-                            </div>
-                            <div class="progress-sub-label">
-                                <div class="sub-label-left">Expenses</div>
-                                <div class="sub-label-right">100%</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
         <div class="row">
             <div class="col-md-12">
                 <div class="main-card mb-3 card">
@@ -477,92 +337,6 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6 col-lg-3">
-                <div class="card-shadow-danger mb-3 widget-chart widget-chart2 text-left card">
-                    <div class="widget-content">
-                        <div class="widget-content-outer">
-                            <div class="widget-content-wrapper">
-                                <div class="widget-content-left pr-2 fsize-1">
-                                    <div class="widget-numbers mt-0 fsize-3 text-danger">71%</div>
-                                </div>
-                                <div class="widget-content-right w-100">
-                                    <div class="progress-bar-xs progress">
-                                        <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="71" aria-valuemin="0" aria-valuemax="100" style="width: 71%;"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="widget-content-left fsize-1">
-                                <div class="text-muted opacity-6">Income Target</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card-shadow-success mb-3 widget-chart widget-chart2 text-left card">
-                    <div class="widget-content">
-                        <div class="widget-content-outer">
-                            <div class="widget-content-wrapper">
-                                <div class="widget-content-left pr-2 fsize-1">
-                                    <div class="widget-numbers mt-0 fsize-3 text-success">54%</div>
-                                </div>
-                                <div class="widget-content-right w-100">
-                                    <div class="progress-bar-xs progress">
-                                        <div class="progress-bar bg-success" role="progressbar" aria-valuenow="54" aria-valuemin="0" aria-valuemax="100" style="width: 54%;"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="widget-content-left fsize-1">
-                                <div class="text-muted opacity-6">Expenses Target</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card-shadow-warning mb-3 widget-chart widget-chart2 text-left card">
-                    <div class="widget-content">
-                        <div class="widget-content-outer">
-                            <div class="widget-content-wrapper">
-                                <div class="widget-content-left pr-2 fsize-1">
-                                    <div class="widget-numbers mt-0 fsize-3 text-warning">32%</div>
-                                </div>
-                                <div class="widget-content-right w-100">
-                                    <div class="progress-bar-xs progress">
-                                        <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="32" aria-valuemin="0" aria-valuemax="100" style="width: 32%;"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="widget-content-left fsize-1">
-                                <div class="text-muted opacity-6">Spendings Target</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card-shadow-info mb-3 widget-chart widget-chart2 text-left card">
-                    <div class="widget-content">
-                        <div class="widget-content-outer">
-                            <div class="widget-content-wrapper">
-                                <div class="widget-content-left pr-2 fsize-1">
-                                    <div class="widget-numbers mt-0 fsize-3 text-info">89%</div>
-                                </div>
-                                <div class="widget-content-right w-100">
-                                    <div class="progress-bar-xs progress">
-                                        <div class="progress-bar bg-info" role="progressbar" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100" style="width: 89%;"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="widget-content-left fsize-1">
-                                <div class="text-muted opacity-6">Totals Target</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        -->
     </div>
 </div>
-<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
