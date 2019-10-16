@@ -1,10 +1,7 @@
 $(document).ready(function() {
-    $("#register-cliente").click(function(e) {
-        console.log("mesnaje");
-
+    $("#register-cliente").on('click', function(e) {
         $(".app-main__inner").load("view/components/ventas/registrar_cliente.php");
-
+        e.preventDefault();
     });
-
 
 });
