@@ -1,23 +1,24 @@
 <?php
 include_once 'Conexion/config.php';
-class phppdo 
+class phppdo
 {
     var $base;
     public function __construct($basedatos)
     {
         $this->base = $basedatos;
     }
-    public function connect(){
+    public function connect()
+    {
 
-        $connect = new PDO("sqlsrv:Server=".HOST.";Database={$this->base}","".USER."" , "".PASS."");
-        
+        $connect = new PDO("sqlsrv:Server=" . HOST . ";Database={$this->base}", "" . USER . "", "" . PASS . "");
+
         if (!$connect) {
             echo "\nPDO::errorInfo():\n";
-        }else{
+        } else {
             return $connect;
         }
-    }  
-    public function listarTb( $consulta, $parametros = array(), $estilos = array())
+    }
+    public function listarTb($consulta, $parametros = array(), $estilos = array())
     {
         try {
             $conn = $this->connect($this->base);
@@ -109,29 +110,37 @@ class phppdo
 
             $conn = null;
             $result = null;
-        } catch (Exception $e) {
-            die(print_r($e->getMessage()));
+        } catch (PDOException $e) {
+            echo 'Error: ' . $e->getMessage();
         }
     }
-    function correrConsulta( $consulta = '', $parametros = array())
+    function correrConsulta($consulta = '', $parametros = array())
     {
         try {
-            $arrayName = array();
             $conn = $this->connect($this->base);
             $query = $conn->prepare($consulta);
             $query->execute($parametros);
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
-            if (is_bool($query)) {
-                
-            $arrayName['respuesta'] = $query;
-            $arrayName['resultado'] = $result;
-            }
-            return $arrayName;
+            return $result;
             $conn = null;
             $result = null;
-        } catch (Exception $e) {
-            die(print_r($e->getMessage()));
+        } catch (PDOException $e) {
+            echo 'Error: ' . $e->getMessage();
         }
     }
- 
+    function ejecutar($consulta = '', $parametros = array())
+    {
+        try {
+            $conn = $this->connect($this->base);
+            $query = $conn->prepare($consulta);
+            if($query->execute($parametros)){
+                return 1;
+            }else {
+                return 0;
+            }
+            $conn = null;
+        } catch (PDOException $e) {
+            echo 'Error: ' . $e->getMessage();
+        }
+    }
 }

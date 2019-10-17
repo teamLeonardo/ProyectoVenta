@@ -144,9 +144,12 @@
                         <!-- Background image for card set in CSS! -->
 
                     </div>
+                    <div id="mensaje">
 
+                    </div>
                     <div class="card-body">
-                        <form action="../../controller/control-pag.php" method="GET" class="form-signin">
+                        <form id="formdata" class="form-signin">
+                            <input type="hidden" name="id-pag" value="registro-usuario">
                             <div class="form-label-group">
                                 <input type="text" id="usuario" name="usuario" class="form-control" placeholder="usuario" required autofocus>
                                 <label for="usuario">usuario</label>
@@ -182,7 +185,7 @@
                             </div>
 
                             <button class="btn btn-lg btn-primary btn-block text-uppercase" id="btn-registrar" type="submit">registrar</button>
-                            <a class="d-block text-center small" href="#">login</a>
+                            <a class="d-block text-center small" href="">login</a>
 
                         </form>
                     </div>
@@ -191,11 +194,44 @@
         </div>
     </div>
 
+    <script src="../../lib/jquery.js"></script>
+
     <script src="../../lib/bootstrap/bootstrap.min.js"></script>
 
     <script src="../../lib/bootstrap/bootstrap.bundle.min.js"></script>
 
-    
+    <script>
+        $(document).ready(function() {
+
+            $('#btn-registrar').on('click', function(e) {
+
+
+                e.preventDefault();
+                $.ajax({
+                    type: "post",
+                    url: "../../controller/control-pag.php",
+                    data: $('#formdata').serialize(),
+                    dataType: "html",
+                    success: function(response) {
+                        /*if (response.estado == false) {
+                            $('#mensaje').html('no se se pudo ingresar');
+                            
+                        }else{
+                            window.location = '../../dashboard.php';
+                        }*/
+                        
+                        $('#mensaje').html(response);
+                    }
+                });
+
+
+                // articulos publicitarios chabing - jerson cordova
+            });
+
+
+        });
+    </script>
+
 </body>
 
 </html>

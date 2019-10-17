@@ -4,22 +4,21 @@ include_once '../model/tablapdo.php';
 
 $obj = new phppdo('EmpresaControl');
 //validar ingreso al daschboard
-if ($_GET['validacionGeneral']=true) {
-    $respuesta = $obj->correrConsulta('sp_masteEmpresa ?,?,?,?,?,?,?',
-    array($_GET['nombre'],
-    $_GET['apellido'],
-    $_GET['dni'],
-    $_GET['usuario'],
-    $_GET['contra'],
-    $_GET['nempresa'],
-    $_GET['ruc']));
-    var_dump($respuesta);
-    if ($respuesta[0] == true) {
-        $_SESSION['empresa'] = $respuesta[1][0];
-        
-        //header('../view/page/dashboard.php');
+
+if ($_POST['id-pag']=='registro-usuario') {
+
+    $form =  array($_POST['nombre'],$_POST['apellido'],
+    $_POST['dni'],$_POST['usuario'],
+    $_POST['contra'],$_POST['nempresa'],
+    $_POST['ruc']);
+    /*$form = $obj->ejecutar("sp_masterEmpresa ?,?,?,?,?,?,?",$form);
+    if ($form == 1) {
+        $estado = array('estado' => true );
     }else {
-        //header('../view/page/pag-register.php');
-    }
+        $estado = array('estado' => false );
+    }*/
+    var_dump($form);
+
 }
+
 ?>
