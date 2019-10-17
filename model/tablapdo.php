@@ -89,23 +89,24 @@ class phppdo
             die(print_r($e->getMessage()));
         }
     }
-    public function listarCB($bd = '', $string = '')
+    public function listarCB($consulta = '', $parametros = array(),$id = '')
     {
         try {
-            $conn = $this->conexionpdo($bd);
-            $query = $conn->prepare($string);
-
+            $conn = $this->connect($this->base);
+            $query = $conn->prepare($consulta);
+            $combo = '';
             //var_dump($query);
-            $query->execute();
-            if ($query) {
+            if($query->execute($parametros)){
+                $combo .= "<select name='{$id}' id='{$id}'>";
                 while ($result = $query->fetchAll(PDO::FETCH_NUM)) {
                     echo "<option value='" . $result[0] . "'>" . $result[1] . "</option>";
                 }
-            } else {
+                $combo .= "</select>";
+            }else{
                 echo "<option value='error'>no , salio error</option>";
 
-                echo "<option value='false'>$string</option>";
             }
+           
 
 
             $conn = null;

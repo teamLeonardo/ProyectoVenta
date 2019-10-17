@@ -15,12 +15,31 @@ if ($_POST['id-pag']=='registro-usuario') {
     $_POST['dni'],$_POST['usuario'],
     $_POST['contra'],$_POST['nempresa'],
     $_POST['ruc']);
-    $form = $obj->ejecutar("sp_masteEmpresa ?,?,?,?,?,?,?",$form);
-    if ($form == 1) {
+    $resultado = $obj->ejecutar("sp_masteEmpresa ?,?,?,?,?,?,?",$form);
+    if ($resultado == 1) {
         $estado = array('estado' => true );
     }else {
         $estado = array('estado' => false );
     }
+    echo json_encode($estado);
+    exit;
+}
+if ($_POST['id-pag']=='login') {
+    $form =  array($_POST['usuario'],$_POST['pass']);
+   $resultado = $obj->correrConsulta("sp_validarUsuarioPermisos ?,? ",$form);
+    if (count($resultado)>0) {
+        $estado = array('estado' => false ,'mensaje'=>$resultado[0][0]);
+        /*if ($resultado[0][0] == 1) {
+            $_SESSION['id_usuario'] = $resultado[0][1];
+            $_SESSION['cargo'] = $resultado[0][2];
+            $estado = array('estado' => true );
+        }else {
+            $estado = array('estado' => false );
+        } */
+    }else {
+        $estado = array('estado' => false );
+    }
+    
     echo json_encode($estado);
     exit;
 }

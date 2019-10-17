@@ -145,7 +145,6 @@
 
                     </div>
                     <div id="mensaje">
-
                     </div>
                     <div class="card-body">
                         <form id="formdata" class="form-signin">
