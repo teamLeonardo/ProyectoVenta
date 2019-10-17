@@ -174,7 +174,7 @@
                     success: function(response) {
                         
                         if (response.estado == false) {
-                            alert(response.mensaje);
+                            alert('no se pudo ingresar compruebe su usuario y contraseña');
                         } else {
                             window.location = '../../dashboard.php';
                         }
