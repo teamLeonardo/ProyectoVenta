@@ -1,5 +1,10 @@
 $(document).ready(function() {
     var $contenedor = $('.app-main__inner');
+
+    $contenedor.load("view/components/inicio/primeraVista.php");
+    $('#primeraVista').addClass('mm-active');
+
+
     $(".vertical-nav-menu").on('click', 'a', function(e) {
         var $seleccion = $(this).attr('id');
         $(this).closest('.vertical-nav-menu').find('a.mm-active').removeClass('mm-active');

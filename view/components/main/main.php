@@ -47,7 +47,7 @@
                     </a>
                     <ul id="modulo-sub-ventas" >
                         <li>
-                            <a href="" id="registrar_cliente" class="mm-active">
+                            <a href="" id="registrar_cliente">
                                 <i class="metismenu-icon" ></i>Registro de Cliente
                             </a>
                         </li>
@@ -142,10 +142,33 @@
                         </li>
                     </ul>
                 </li>
-                <li>
-                    <a href="tables-regular.html">
-                        <i class="metismenu-icon pe-7s-display2"></i> Tables
+                <li id="empresa">
+                    <a href="">
+                        <i class="metismenu-icon pe-7s-calculator"></i>control de empresa
+                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                     </a>
+                    <ul>
+                        <li>
+                            <a href="" id="admin_usuario" >
+                                <i class="metismenu-icon" ></i>usuarios
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" id="admin_vendedore">
+                                <i class="metismenu-icon"></i>vendedores
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" id="Vista-Productos">
+                                <i class="metismenu-icon"></i>Vista de Productos
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" id="Vista-perdidas">
+                                <i class="metismenu-icon"></i>Vista de perdidas
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="app-sidebar__heading">Widgets</li>
                 <li>
