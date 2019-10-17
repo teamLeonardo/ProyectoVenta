@@ -211,16 +211,14 @@
                     type: "post",
                     url: "../../controller/control-pag.php",
                     data: $('#formdata').serialize(),
-                    dataType: "html",
+                    dataType: "json",
                     success: function(response) {
-                        /*if (response.estado == false) {
+                        if (response.estado == false) {
                             $('#mensaje').html('no se se pudo ingresar');
                             
                         }else{
                             window.location = '../../dashboard.php';
-                        }*/
-                        
-                        $('#mensaje').html(response);
+                        }
                     }
                 });
 
