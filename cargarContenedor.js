@@ -1,7 +1,9 @@
 $(document).ready(function() {
     var $contenedor = $('.app-main__inner');
+    var modalContainer = $('.zonaModal');
 
     $contenedor.load("view/components/inicio/primeraVista.php");
+
     $('#primeraVista').addClass('mm-active');
 
 
@@ -27,4 +29,23 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
+    $contenedor.on('click', 'button.modal-activacion', function() {
+        _this = $(this);
+        var datos = _this.parent().find('table thead tr th').map(function() {
+            return $(this).text();
+        }).get();
+        var arreglo = { 'identificador': 'modal-cliente', 'obj': datos };
+        $.ajax({
+            type: "GET",
+            url: "view/components/modales/modal_crear.php",
+            data: arreglo,
+            dataType: "html",
+            success: function(response) {
+                modalContainer.html(response);
+            }
+        });
+
+        _this.closest('.modal-cliente').modal('show');
+
+    });
 });

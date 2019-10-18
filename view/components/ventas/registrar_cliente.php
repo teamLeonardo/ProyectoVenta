@@ -1,4 +1,4 @@
-<button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>
+<button type="button" class="btn mr-2 mb-2 btn-primary modal-activacion" data-toggle="modal" >modal Cliente</button>
 
 <div class="row">
     <div class="col-lg-12">
@@ -9,13 +9,13 @@
                     <table class="mb-0 table">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Table heading</th>
-                                <th>Table heading</th>
-                                <th>Table heading</th>
-                                <th>Table heading</th>
-                                <th>Table heading</th>
-                                <th>Table heading</th>
+                                <th id='id'>id</th>
+                                <th id="a1">celda 1</th>
+                                <th id="a2" >celda 2</th>
+                                <th id="a3" >celda 3</th>
+                                <th id="a4" >celda 4</th>
+                                <th id="a5" >celda 5</th>
+                                <th id="a6" >celda 6</th>
                             </tr>
                         </thead>
                         <tbody>
