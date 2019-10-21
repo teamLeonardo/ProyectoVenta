@@ -128,8 +128,15 @@ $objVenta = new phppdo('PuntoDeVenta');
           rowclien += '</tr>';
           $('#tabla-cliente tbody').append(rowclien);
           alertify.success('Se agrego correctamente');
+          if(response.data.length > 0){
+            console.log(response.data);
+          }
 
         } else {
+          if(response.data.length > 0){
+            console.log(response.data);
+          }
+
           alertify.error('no se pudo agregar');
         }
       },
