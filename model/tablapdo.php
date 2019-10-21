@@ -33,7 +33,6 @@ class phppdo
 
                 echo "<thead>";
                 echo "<tr>";
-                echo "<td class = 'hide'>invisivle</td>";
                 foreach ($result[0] as $key => $value) {
                     $var = '';
                     foreach ($estilos as $com => $val) {
@@ -49,7 +48,6 @@ class phppdo
                 echo "<tbody>";
                 for ($i = 0; $i < $total; $i++) {
                     echo "<tr id='{$i}'>";
-                    echo "<td class = 'hide'><input type=\"checkbox\"  ></td>";
                     foreach ($result[$i] as $key => $value) {
                         $var = '';
                         foreach ($estilos as $com => $val) {
@@ -68,7 +66,6 @@ class phppdo
                 echo "</tbody>";
                 echo "<tfoot>";
                 echo "<tr>";
-                echo "<th class = 'hide'>invisivle</th>";
                 foreach ($result[0] as $key => $value) {
                     $var = '';
                     foreach ($estilos as $com => $val) {
@@ -89,24 +86,23 @@ class phppdo
             die(print_r($e->getMessage()));
         }
     }
-    public function listarCB($consulta = '', $parametros = array(),$id = '')
+    public function listarCB($consulta = '', $parametros = array(), $id = '')
     {
         try {
             $conn = $this->connect($this->base);
             $query = $conn->prepare($consulta);
             $combo = '';
             //var_dump($query);
-            if($query->execute($parametros)){
+            if ($query->execute($parametros)) {
                 $combo .= "<select name='{$id}' id='{$id}'>";
                 while ($result = $query->fetchAll(PDO::FETCH_NUM)) {
                     echo "<option value='" . $result[0] . "'>" . $result[1] . "</option>";
                 }
                 $combo .= "</select>";
-            }else{
+            } else {
                 echo "<option value='error'>no , salio error</option>";
-
             }
-           
+
 
 
             $conn = null;
@@ -134,12 +130,38 @@ class phppdo
         try {
             $conn = $this->connect($this->base);
             $query = $conn->prepare($consulta);
-            if($query->execute($parametros)){
+            if ($query->execute($parametros)) {
                 return 1;
-            }else {
+            } else {
                 return 0;
             }
             $conn = null;
+        } catch (PDOException $e) {
+            echo 'Error: ' . $e->getMessage();
+        }
+    }
+    function crearFormulario($consulta = '',$parametros = array()){
+        try {
+            $conn = $this->connect($this->base);
+            $query = $conn->prepare($consulta);
+            $result = array();
+            if ($query->execute($parametros)) {
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($result as $key => $value) {
+                    '<div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                    <small id="emailHelp" class="form-text text-muted">Well never share your email with anyone else.</small>
+                  </div>
+                  <input class="form-control form-control-sm" type="text" placeholder=".form-control-sm">';
+                    echo "<input type='text' class='form-$key'>";
+                }
+            } else {
+                $result = null;
+            }
+            
+            $conn = null;
+            $result = null;
         } catch (PDOException $e) {
             echo 'Error: ' . $e->getMessage();
         }

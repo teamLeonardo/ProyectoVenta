@@ -23,8 +23,7 @@ if ($_POST['id-pag']=='registro-usuario') {
     }
     echo json_encode($estado);
     exit;
-}
-if ($_POST['id-pag']=='login') {
+}else if ($_POST['id-pag']=='login') {
     $form =  array($_POST['usuario'],$_POST['pass']);
    $resultado = $obj->correrConsulta("sp_validarUsuarioPermisos ?,? ",$form);
     if (count($resultado)>0) {
@@ -41,5 +40,8 @@ if ($_POST['id-pag']=='login') {
     }
     
     echo json_encode($estado);
+    exit;
+}else if($_POST['id-pag']=='registro-cliente-crear'){
+    
     exit;
 }

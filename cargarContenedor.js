@@ -30,11 +30,12 @@ $(document).ready(function() {
     });
 
     $contenedor.on('click', 'button.modal-activacion', function() {
+        e.preventDefault();
         _this = $(this);
         var datos = _this.parent().find('table thead tr th').map(function() {
             return $(this).text();
         }).get();
-        var arreglo = { 'identificador': 'modal-cliente', 'obj': datos };
+        var arreglo = { 'identificador': _this.attr('href'), 'obj': datos };
         $.ajax({
             type: "GET",
             url: "view/components/modales/modal_crear.php",
@@ -45,7 +46,7 @@ $(document).ready(function() {
             }
         });
 
-        _this.closest('.modal-cliente').modal('show');
+        console.log(arreglo);
 
     });
 });

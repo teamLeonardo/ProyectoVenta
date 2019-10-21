@@ -1,6 +1,5 @@
 <?php
 //instancia
-$obj = new phppdo;
 //
 //
 if ($_POST['accion'] === 'listar') {
