@@ -6,9 +6,10 @@ $objVenta = new phppdo('PuntoDeVenta');
 
 ?>
 <script>
-  var urlProcesos = 'controller/control-pag.php'; 
-  window.onerror = new Function("return true");
-  $("#dialogoCiente").dialog({
+  var urlProcesos = 'controller/control-pag.php';
+  
+  var $dialogo = $("#dialogoCiente");
+  $dialogo.dialog({
     autoOpen: false,
     show: {
       effect: "scale",
@@ -20,96 +21,117 @@ $objVenta = new phppdo('PuntoDeVenta');
     }
   });
   //#region form-agregar
-    $("#opener").on("click", function() {
-      _this = $(this).parent();
-      var createf = '';
-      var $campos = _this.find('table#tabla-cliente thead tr th').map(function() {
-        return $(this).text();
-      }).get();
-      for (let index = 1; index < $campos.length; index++) {
-        if (index == 6) {
-          var elemento = $campos[index];
+  $("#opener").on("click", function() {
+    _this = $(this).parent();
+    var createf = '';
+    var $campos = _this.find('table#tabla-cliente thead tr th').map(function() {
+      return $(this).text();
+    }).get();
+
+    createf += '<input type="hidden" name="id-pag" value="registro-cliente-crear">';
+    for (let index = 1; index < $campos.length; index++) {
+      if (index == 6) {
+        var elemento = $campos[index];
 
 
-          createf += '<label class="mt-1" for="' + elemento + '">' + elemento + '</label>';
-          createf += '<input class="form-control form-control-sm mb-2" disabled="disabled" id="' + elemento + '" type="text" value="' + <?php echo $_SESSION['empresa']; ?> + '">';
-        } else if (index == 5) {
-          var elemento = $campos[index];
+        createf += '<label class="mt-1" for="' + elemento + '">' + elemento + '</label>';
+        createf += '<input class="form-control form-control-sm mb-2" name= "' + elemento + '" readonly="readonly" id="' + elemento + '" type="text" value="' + <?php echo $_SESSION['empresa']; ?> + '">';
+      } else if (index == 5) {
+        var elemento = $campos[index];
 
 
-          createf += '<label class="mt-1" for="' + elemento + '">' + elemento + '</label>';
-          createf += '<input class="form-control form-control-sm mb-2" disabled="disabled" id="' + elemento + '" type="text" value="3">';
+        createf += '<label class="mt-1" for="' + elemento + '">' + elemento + '</label>';
+        createf += '<input class="form-control form-control-sm mb-2" name= "' + elemento + '" readonly="readonly" id="' + elemento + '" type="text" value="3">';
 
-        } else {
+      } else {
 
-          var elemento = $campos[index];
+        var elemento = $campos[index];
 
-          createf += '<label class="mt-1" for="' + elemento + '">' + elemento + '</label>';
-          createf += '<input class="form-control form-control-sm mb-2" id="' + elemento + '" type="text" placeholder="' + elemento + '">';
-        }
-
+        createf += '<label class="mt-1" for="' + elemento + '">' + elemento + '</label>';
+        createf += '<input class="form-control form-control-sm mb-2" name= "' + elemento + '" id="' + elemento + '" type="text" placeholder="' + elemento + '">';
       }
 
-      createf += '<button type="submit" class="btn btn-primary" id="btn-agregarCliente">aceptar</button>';
-      $('#dialogoCiente fieldset form#from-venta').html(createf);
-      $("#dialogoCiente").dialog("open");
-    });
+    }
+
+    createf += '<button type="submit" class="btn btn-primary" id="btn-agregarCliente">aceptar</button>';
+    $('#dialogoCiente fieldset form#from-venta').html(createf);
+    $dialogo.dialog("open");
+  });
   //#endregion
   //#region datatable
-    $('#tabla-cliente').DataTable();
+  $('#tabla-cliente').DataTable();
   //#endregion 
   //#region form-update
-    $('#tabla-cliente').on('click', 'tr', function() {
-      $("#dialogoCiente").dialog("close");
-      __this = $(this);
-      var createf = '';
-      var arrayFormulario = Array;
-      var $valore = __this.find('td').map(function() {
-        return $(this).text();
-      }).get();
-      var $campos = __this.closest('table').find('thead tr th').map(function() {
-        return $(this).text();
-      }).get();
-      createf += '<input type="hidden" name="id-pag" value="registro-cliente-crear">'; 
-      for (let index = 0; index < $campos.length; index++) {
+  $('#tabla-cliente').on('click', 'tr', function() {
+    $dialogo.dialog("close");
+    __this = $(this);
+    var createf = '';
+    var arrayFormulario = Array;
+    var $valore = __this.find('td').map(function() {
+      return $(this).text();
+    }).get();
+    var $campos = __this.closest('table').find('thead tr th').map(function() {
+      return $(this).text();
+    }).get();
+    createf += '<input type="hidden" name="id-pag" value="registro-cliente-crear">';
+    for (let index = 0; index < $campos.length; index++) {
 
-        if (index == 0 || index == 6) {
-          var elemento = $campos[index];
-          var valore = $valore[index];
+      if (index == 0 || index == 6) {
+        var elemento = $campos[index];
+        var valore = $valore[index];
 
-          createf += '<label class="mt-1" for="' + elemento + '">' + elemento + '</label>';
-          createf += '<input class="form-control form-control-sm mb-2"  disabled="disabled" id="' + elemento + '" type="text" value="' + valore + '">';
+        createf += '<label class="mt-1" for="' + elemento + '">' + elemento + '</label>';
+        createf += '<input class="form-control form-control-sm mb-2"  disabled="disabled" id="' + elemento + '" type="text" value="' + valore + '">';
 
-        } else {
-          var elemento = $campos[index];
-          var valore = $valore[index];
+      } else {
+        var elemento = $campos[index];
+        var valore = $valore[index];
 
-          createf += '<label class="mt-1" for="' + elemento + '">' + elemento + '</label>';
-          createf += '<input class="form-control form-control-sm mb-2" id="' + elemento + '" type="text" value="' + valore + '">';
-        }
+        createf += '<label class="mt-1" for="' + elemento + '">' + elemento + '</label>';
+        createf += '<input class="form-control form-control-sm mb-2" id="' + elemento + '" type="text" value="' + valore + '">';
       }
-      createf += '<button type="submit" class="btn btn-primary">aceptar</button>';
-      $('#dialogoCiente fieldset form#from-venta').html(createf);
-      $("#dialogoCiente").dialog("open");
+    }
+    createf += '<button type="submit" class="btn btn-primary">aceptar</button>';
+    $('#dialogoCiente fieldset form#from-venta').html(createf);
+    $dialogo.dialog("open");
 
-    });
+  });
   //#endregion
   //#region agregarCliente
-    $('form#from-venta').on('click','button#btn-agregarCliente', function (e) {
-      e.preventDefault()
-      __this = $(this);
-      $.ajax({
-        type: "POST",
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        url: url,
-        data: $('#from-venta').serialize(),
-        success: function (response) {
+  $('#dialogoCiente fieldset form#from-venta').on('click', 'button#btn-agregarCliente', function(e) {
 
+    e.preventDefault();
+    __this = $(this);
+
+    $.ajax({
+      type: "POST",
+      url: urlProcesos,
+      data: $('#from-venta').serialize(),
+      dataType: "html",
+      beforeSend: function() {
+
+        console.log('hola1');
+        alertify.warning('esperando');
+      },
+      success: function(response) {
+        console.log('hola2');
+        if (response.estado == true) {
+          alertify.success('Se agrego correctamente');
+          console.log($('#from-venta').serialize());
+
+        } else {
+          alertify.error('no se pudo agregar');
+          console.log($('#from-venta').serialize());
         }
-      });
+      },
+      error: function(xhr) { // if error occured
+        alertify.error('ajax error: ' + xhr.statusText + xhr.responseText);
 
+      }
     });
+
+    $dialogo.dialog("close");
+  });
   //#endregion
 </script>
 <button type="button" id="opener" class="btn btn-success mb-2">MODAL 1</button>
@@ -130,7 +152,7 @@ $objVenta = new phppdo('PuntoDeVenta');
 </div>
 <div id="dialogoCiente" title="Basic dialog">
   <fieldset>
-    <form  id="from-venta">
+    <form id="from-venta">
 
     </form>
   </fieldset>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 include_once 'model/tablapdo.php';
 session_start();
 $_SESSION['empresa'] = 2;
@@ -21,7 +21,7 @@ $objVenta = new phppdo('PuntoDeVenta');
     <link rel="stylesheet" href="lib/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="lib/jquery-ui.css">
     <link rel="stylesheet" href="lib/datatables/datatables.min.css">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/alertify.min.css" />
+    <link rel="stylesheet" href="lib/alertify.min.css" />
     <script src="https://kit.fontawesome.com/1bfe247ee7.js" crossorigin="anonymous"></script>
     <link href="./main.css" rel="stylesheet">
 </head>
@@ -29,14 +29,14 @@ $objVenta = new phppdo('PuntoDeVenta');
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         <div class="app-header header-shadow" id="header-app-framer">
-            <?php include_once 'view/components/barra-t/barra.php';?>
+            <?php include_once 'view/components/barra-t/barra.php'; ?>
         </div>
         <div class="ui-theme-settings">
-            <?php include_once 'view/components/settings/settings-pag.php';?>
+            <?php include_once 'view/components/settings/settings-pag.php'; ?>
 
         </div>
         <div class="app-main">
-            <?php include_once 'view/components/main/main.php';?>
+            <?php include_once 'view/components/main/main.php'; ?>
 
         </div>
     </div>
@@ -45,11 +45,11 @@ $objVenta = new phppdo('PuntoDeVenta');
 
     <script src="lib/jquery.js"></script>
     <script src="lib/jquery-ui.js"></script>
-    <script src="lib/popper.min.js" ></script>
+    <script src="lib/popper.min.js"></script>
     <script src="lib/bootstrap/bootstrap.min.js"></script>
     <script src="lib/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="lib/datatables/datatables.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/alertify.min.js"></script>
+    <script src="lib/alertify.min.js"></script>
     <script src="cargarContenedor.js"></script>
 
 </body>

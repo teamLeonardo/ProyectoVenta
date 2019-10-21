@@ -140,30 +140,5 @@ class phppdo
             echo 'Error: ' . $e->getMessage();
         }
     }
-    function crearFormulario($consulta = '',$parametros = array()){
-        try {
-            $conn = $this->connect($this->base);
-            $query = $conn->prepare($consulta);
-            $result = array();
-            if ($query->execute($parametros)) {
-                $result = $query->fetchAll(PDO::FETCH_ASSOC);
-                foreach ($result as $key => $value) {
-                    '<div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                    <small id="emailHelp" class="form-text text-muted">Well never share your email with anyone else.</small>
-                  </div>
-                  <input class="form-control form-control-sm" type="text" placeholder=".form-control-sm">';
-                    echo "<input type='text' class='form-$key'>";
-                }
-            } else {
-                $result = null;
-            }
-            
-            $conn = null;
-            $result = null;
-        } catch (PDOException $e) {
-            echo 'Error: ' . $e->getMessage();
-        }
-    }
+   
 }

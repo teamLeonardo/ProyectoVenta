@@ -4,6 +4,7 @@ session_start();
 include_once '../model/tablapdo.php';
 
 $obj = new phppdo('EmpresaControl');
+$objPuntoVenta = new phppdo('PuntoDeVenta');
 
 header('Content-type: application/json; charset=utf-8');
 //validar ingreso al daschboard
@@ -24,6 +25,7 @@ if ($_POST['id-pag']=='registro-usuario') {
     echo json_encode($estado);
     exit;
 }else if ($_POST['id-pag']=='login') {
+    
     $form =  array($_POST['usuario'],$_POST['pass']);
    $resultado = $obj->correrConsulta("sp_validarUsuarioPermisos ?,? ",$form);
     if (count($resultado)>0) {
@@ -42,6 +44,16 @@ if ($_POST['id-pag']=='registro-usuario') {
     echo json_encode($estado);
     exit;
 }else if($_POST['id-pag']=='registro-cliente-crear'){
-    
+    $form =  array($_POST['nombre'],$_POST['apellido'],
+    $_POST['DOCUMENTO'],$_POST['tipoCliente'],
+    $_POST['estado'],$_POST['id_empresa']);
+   
+    $resultado = $objPuntoVenta->ejecutar("insert into cliente values(?,?,?,?,?,?)",$form);
+    if ($resultado == 1) {
+        $estado = array('estado' => true );
+    }else {
+        $estado = array('estado' => false );
+    }
+    echo json_encode($estado);
     exit;
 }
