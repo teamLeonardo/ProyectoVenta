@@ -59,17 +59,17 @@ if ($_POST['id-pag'] == 'registro-usuario') {
         foreach ($ultimoregistro as $key => $value) {
             $arrayRe[] = $value;
         }
-        if (count($ultimoregistro) > 0 ) {
+        if (count($arrayRe) > 0 ) {
 
-            $estado = array('estado' => true,'data' => $ultimoregistro[0]);
-           // $resultado = $objPuntoVenta->ejecutar("insert into cliente values(?,?,?,?,?,?,?)", $ultimoregistro[0]); 
-            /*if ($resultado ==  1) {
-                $estado = array('estado' => true);
+            $estado = array('estado' => true,'data' => $arrayRe);
+            $resultado = $objPuntoVenta->ejecutar("insert into cliente values(?,?,?,?,?,?,?)", $arrayRe); 
+            if ($resultado ==  1) {
+                $estado = array('estado' => true ,'data' => $arrayRe);
             } else {
-                $estado = array('estado' => false);
-            } */
+                $estado = array('estado' => false ,'data' => $arrayRe);
+            } 
         }else {
-            $estado = array('estado' => false ,'data' => $ultimoregistro[0]);
+            $estado = array('estado' => false ,'data' => $arrayRe);
         }
     } else {
         $estado = array('estado' => false);

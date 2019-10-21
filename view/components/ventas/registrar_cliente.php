@@ -7,7 +7,7 @@ $objVenta = new phppdo('PuntoDeVenta');
 ?>
 <script>
   var urlProcesos = 'controller/control-pag.php';
-  var identificador = null; 
+  var identificador = null;
   var $dialogo = $("#dialogoCiente");
   $dialogo.dialog({
     autoOpen: false,
@@ -82,14 +82,14 @@ $objVenta = new phppdo('PuntoDeVenta');
         var valore = $valore[index];
 
         createf += '<label class="mt-1" for="' + elemento + '">' + elemento + '</label>';
-        createf += '<input class="form-control form-control-sm mb-2" name="'+elemento+'" readonly="readonly" id="' + elemento + '" type="text" value="' + valore + '">';
+        createf += '<input class="form-control form-control-sm mb-2" name="' + elemento + '" readonly="readonly" id="' + elemento + '" type="text" value="' + valore + '">';
 
       } else {
         var elemento = $campos[index];
         var valore = $valore[index];
 
         createf += '<label class="mt-1" for="' + elemento + '">' + elemento + '</label>';
-        createf += '<input class="form-control form-control-sm mb-2" name="'+elemento+'" id="' + elemento + '" type="text" value="' + valore + '">';
+        createf += '<input class="form-control form-control-sm mb-2" name="' + elemento + '" id="' + elemento + '" type="text" value="' + valore + '">';
       }
     }
     createf += '<button type="submit" class="btn btn-primary" id="btn-upCliente">Actualizar</button>';
@@ -128,19 +128,21 @@ $objVenta = new phppdo('PuntoDeVenta');
           rowclien += '</tr>';
           $('#tabla-cliente tbody').append(rowclien);
           alertify.success('Se agrego correctamente');
-          if(response.data.length > 0){
+          if (response.data.length > 0) {
             console.log(response.data);
           }
 
         } else {
-          if(response.data.length > 0){
+          
+          alertify.error('no se pudo agregar');
+          if (response.data.length < 0) {
             console.log(response.data);
           }
 
-          alertify.error('no se pudo agregar');
         }
       },
       error: function(xhr) { // if error occured
+        console.log(xhr.statusText + xhr.responseText);
         alertify.error('ajax error: ' + xhr.statusText + xhr.responseText);
 
       }
@@ -164,24 +166,24 @@ $objVenta = new phppdo('PuntoDeVenta');
       },
       success: function(response) {
         if (response.estado == true) {
-         
+
           alertify.success('se actualizo Corectamente');
-          
+
           identificador.replaceWith(function() {
             var datos = '<tr>';
-            datos += "<td>"+response.data[5]+"</td>";
-            datos += "<td>"+response.data[0]+"</td>";  
-            datos += "<td>"+response.data[1]+"</td>";
-            datos += "<td>"+response.data[2]+"</td>";
-            datos += "<td>"+response.data[3]+"</td>";
-            datos += "<td>"+response.data[4]+"</td>";  
-             datos += '</tr>';
-            
+            datos += "<td>" + response.data[5] + "</td>";
+            datos += "<td>" + response.data[0] + "</td>";
+            datos += "<td>" + response.data[1] + "</td>";
+            datos += "<td>" + response.data[2] + "</td>";
+            datos += "<td>" + response.data[3] + "</td>";
+            datos += "<td>" + response.data[4] + "</td>";
+            datos += '</tr>';
+
             return datos;
           });
           console.log();
 
-            
+
         } else {
           alertify.error('no se pudo actualizar');
         }
