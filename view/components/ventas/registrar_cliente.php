@@ -7,7 +7,7 @@ $objVenta = new phppdo('PuntoDeVenta');
 ?>
 <script>
   var urlProcesos = 'controller/control-pag.php';
-  
+  var identificador = null; 
   var $dialogo = $("#dialogoCiente");
   $dialogo.dialog({
     autoOpen: false,
@@ -65,6 +65,7 @@ $objVenta = new phppdo('PuntoDeVenta');
   $('#tabla-cliente').on('click', 'tr', function() {
     $dialogo.dialog("close");
     __this = $(this);
+    identificador = __this;
     var createf = '';
     var arrayFormulario = Array;
     var $valore = __this.find('td').map(function() {
@@ -73,7 +74,7 @@ $objVenta = new phppdo('PuntoDeVenta');
     var $campos = __this.closest('table').find('thead tr th').map(function() {
       return $(this).text();
     }).get();
-    createf += '<input type="hidden" name="id-pag" value="registro-cliente-crear">';
+    createf += '<input type="hidden" name="id-pag" value="registro-cliente-update">';
     for (let index = 0; index < $campos.length; index++) {
 
       if (index == 0 || index == 6) {
@@ -81,18 +82,19 @@ $objVenta = new phppdo('PuntoDeVenta');
         var valore = $valore[index];
 
         createf += '<label class="mt-1" for="' + elemento + '">' + elemento + '</label>';
-        createf += '<input class="form-control form-control-sm mb-2"  disabled="disabled" id="' + elemento + '" type="text" value="' + valore + '">';
+        createf += '<input class="form-control form-control-sm mb-2" name="'+elemento+'" readonly="readonly" id="' + elemento + '" type="text" value="' + valore + '">';
 
       } else {
         var elemento = $campos[index];
         var valore = $valore[index];
 
         createf += '<label class="mt-1" for="' + elemento + '">' + elemento + '</label>';
-        createf += '<input class="form-control form-control-sm mb-2" id="' + elemento + '" type="text" value="' + valore + '">';
+        createf += '<input class="form-control form-control-sm mb-2" name="'+elemento+'" id="' + elemento + '" type="text" value="' + valore + '">';
       }
     }
-    createf += '<button type="submit" class="btn btn-primary">aceptar</button>';
+    createf += '<button type="submit" class="btn btn-primary" id="btn-upCliente">Actualizar</button>';
     $('#dialogoCiente fieldset form#from-venta').html(createf);
+
     $dialogo.dialog("open");
 
   });
@@ -107,21 +109,28 @@ $objVenta = new phppdo('PuntoDeVenta');
       type: "POST",
       url: urlProcesos,
       data: $('#from-venta').serialize(),
-      dataType: "html",
+      dataType: "json",
       beforeSend: function() {
-
-        console.log('hola1');
         alertify.warning('esperando');
       },
       success: function(response) {
-        console.log('hola2');
         if (response.estado == true) {
+          var rowclien = '<tr>';
+          var formularioValorew = $('#from-venta').find('input').map(function() {
+            return $(this).val();
+          }).get();
+          var numFilas = parseInt($('#tabla-cliente tbody tr').last().find('td:first-child').text()) + 1;
+          rowclien += '<td>' + String(numFilas) + '</td>';
+          for (let index = 1; index < formularioValorew.length; index++) {
+            var elem = formularioValorew[index];
+            rowclien += '<td>' + elem + '</td>';
+          }
+          rowclien += '</tr>';
+          $('#tabla-cliente tbody').append(rowclien);
           alertify.success('Se agrego correctamente');
-          console.log($('#from-venta').serialize());
 
         } else {
           alertify.error('no se pudo agregar');
-          console.log($('#from-venta').serialize());
         }
       },
       error: function(xhr) { // if error occured
@@ -133,8 +142,54 @@ $objVenta = new phppdo('PuntoDeVenta');
     $dialogo.dialog("close");
   });
   //#endregion
+  //#region actualizar  
+  $('#dialogoCiente fieldset form#from-venta').on('click', 'button#btn-upCliente', function(e) {
+
+    e.preventDefault();
+    __this = $(this);
+    $.ajax({
+      type: "POST",
+      url: urlProcesos,
+      data: $('#from-venta').serialize(),
+      dataType: "json",
+      beforeSend: function() {
+        alertify.warning('esperando....');
+      },
+      success: function(response) {
+        if (response.estado == true) {
+         
+          alertify.success('se actualizo Corectamente');
+          
+          identificador.replaceWith(function() {
+            var datos = '<tr>';
+            datos += "<td>"+response.data[5]+"</td>";
+            datos += "<td>"+response.data[0]+"</td>";  
+            datos += "<td>"+response.data[1]+"</td>";
+            datos += "<td>"+response.data[2]+"</td>";
+            datos += "<td>"+response.data[3]+"</td>";
+            datos += "<td>"+response.data[4]+"</td>";  
+             datos += '</tr>';
+            
+            return datos;
+          });
+          console.log();
+
+            
+        } else {
+          alertify.error('no se pudo actualizar');
+        }
+      },
+      error: function(xhr) { // if error occured
+        alertify.error('ajax error: ' + xhr.statusText + xhr.responseText);
+
+      }
+    });
+
+    $dialogo.dialog("close");
+  });
+  ///#endregion
 </script>
-<button type="button" id="opener" class="btn btn-success mb-2">MODAL 1</button>
+<button type="button" id="opener" class="btn btn-success mb-2">agregar</button>
 <div class="row">
   <div class="col-lg-12">
     <div class="main-card mb-3 card">

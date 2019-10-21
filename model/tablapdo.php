@@ -138,7 +138,7 @@ class phppdo
             $conn = null;
         } catch (PDOException $e) {
             echo 'Error: ' . $e->getMessage();
-        }
+        } 
     }
    
 }

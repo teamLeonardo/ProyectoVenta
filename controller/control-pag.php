@@ -47,10 +47,28 @@ if ($_POST['id-pag']=='registro-usuario') {
     $form =  array($_POST['nombre'],$_POST['apellido'],
     $_POST['DOCUMENTO'],$_POST['tipoCliente'],
     $_POST['estado'],$_POST['id_empresa']);
-   
     $resultado = $objPuntoVenta->ejecutar("insert into cliente values(?,?,?,?,?,?)",$form);
-    if ($resultado == 1) {
+    
+    $resultado2 = $obj->ejecutar("insert into MasterCliente values(?,?,?,?,?,?)",$form);
+    if ($resultado == 1 && $resultado2 == 1) {
         $estado = array('estado' => true );
+    }else {
+        $estado = array('estado' => false );
+    }
+    echo json_encode($estado);
+    exit;
+}else if($_POST['id-pag']=='registro-cliente-update'){
+    $form =  array($_POST['nombre'],$_POST['apellido'],
+    $_POST['DOCUMENTO'],$_POST['tipoCliente'],
+    $_POST['estado'],$_POST['id_empresa'],$_POST['id_cliente']);
+
+    $resultado = $objPuntoVenta->ejecutar("update cliente set nombre = ? , apellido = ? , DOCUMENTO = ? ,tipoCliente = ? ,estado = ? ,id_empresa = ? where id_cliente =?",$form);
+
+    $resultado2 = $obj->ejecutar("update MasterCliente set nombre = ? , apellido = ? , DOCUMENTO = ? ,tipoCliente = ? ,estado = ? ,id_empresa = ? where id_cliente =?",$form);
+    
+    if ($resultado == 1 && $resultado2 == 1) {
+        $estado = array('estado' => true ,'data'=> $form);
+        
     }else {
         $estado = array('estado' => false );
     }
