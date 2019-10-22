@@ -5,9 +5,21 @@ $objVenta = new phppdo('PuntoDeVenta');
 
 
 ?>
+<style>
+  .ui-selecting {
+    background: #FECA40;
+  }
+
+  .ui-selected {
+    background: #F39814;
+    color: white;
+  }
+</style>
+
 <script>
   var urlProcesos = 'controller/control-pag.php';
   var identificador = null;
+  var selev = null;
   var $dialogo = $("#dialogoCiente");
   $dialogo.dialog({
     autoOpen: false,
@@ -20,11 +32,12 @@ $objVenta = new phppdo('PuntoDeVenta');
       duration: 500
     }
   });
+
   //#region form-agregar
   $("#opener").on("click", function() {
     _this = $(this).parent();
     var createf = '';
-    var $campos = _this.find('table#tabla-cliente thead tr th').map(function() {
+    var $campos = _this.closest('.app-main__inner').find('table#tabla-cliente thead tr th').map(function() {
       return $(this).text();
     }).get();
 
@@ -58,9 +71,11 @@ $objVenta = new phppdo('PuntoDeVenta');
     $dialogo.dialog("open");
   });
   //#endregion
+
   //#region datatable
   $('#tabla-cliente').DataTable();
   //#endregion 
+
   //#region form-update
   $('#tabla-cliente').on('click', 'tr', function() {
     $dialogo.dialog("close");
@@ -99,6 +114,7 @@ $objVenta = new phppdo('PuntoDeVenta');
 
   });
   //#endregion
+
   //#region agregarCliente
   $('#dialogoCiente fieldset form#from-venta').on('click', 'button#btn-agregarCliente', function(e) {
 
@@ -128,17 +144,8 @@ $objVenta = new phppdo('PuntoDeVenta');
           rowclien += '</tr>';
           $('#tabla-cliente tbody').append(rowclien);
           alertify.success('Se agrego correctamente');
-          if (response.data.length > 0) {
-            console.log(response.data);
-          }
-
         } else {
-          
           alertify.error('no se pudo agregar');
-          if (response.data.length < 0) {
-            console.log(response.data);
-          }
-
         }
       },
       error: function(xhr) { // if error occured
@@ -151,6 +158,7 @@ $objVenta = new phppdo('PuntoDeVenta');
     $dialogo.dialog("close");
   });
   //#endregion
+
   //#region actualizar  
   $('#dialogoCiente fieldset form#from-venta').on('click', 'button#btn-upCliente', function(e) {
 
@@ -197,8 +205,66 @@ $objVenta = new phppdo('PuntoDeVenta');
     $dialogo.dialog("close");
   });
   ///#endregion
+
+  //#region selcet elimina
+  $("#tabla-cliente tbody").selectable({
+    stop: function() {
+      var ___this = $(this);
+      selev = $("tr.ui-selected").map(function() {
+        return $(this).find('td:first-child').text();
+      }).get();
+      
+    }
+  });
+  //#endregion 
+
+  //#region boton eliminar
+  $('#eliminar').on('click', function() {
+    console.log(selev);
+    if (selev != null) {
+      var barra = 100;
+      var numeros = selev.length;
+      var batotal = barra / numeros;
+      alertify.confirm("eliminacion",'seguro que quiere eliminar '+ numeros+' registros?',
+        function() {
+          selev.forEach(function(eleme) {
+            
+          });
+          alertify.success('Ok');
+
+        },
+        function() {
+          alertify.error('Cancelado');
+        });
+    }
+  });
+
+  //#endregion
 </script>
-<button type="button" id="opener" class="btn btn-success mb-2">agregar</button>
+<div class="container-fluid mb-4">
+
+</div>
+<div class="main-card mb-3 card">
+  <div class="card-body">
+    <h4 class="card-title">barra de control</h4>
+    <div class="container-fluid">
+      <div class="row">
+        <button type="button" id="opener" class="col-2 mr-3 btn btn-success ">agregar</button>
+        <button type="button" id="eliminar" class="col-2  btn btn-danger">eliminar</button>
+        <div class="col-4">
+          <div class="text-center">esperando peticion...</div>
+          <div class="progress mt-2 mb-2">
+            <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+
+  </div>
+</div>
+
 <div class="row">
   <div class="col-lg-12">
     <div class="main-card mb-3 card">

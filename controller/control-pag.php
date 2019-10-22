@@ -54,22 +54,11 @@ if ($_POST['id-pag'] == 'registro-usuario') {
 
     $resultado2 = $obj->ejecutar("insert into MasterCliente values(?,?,?,?,?,?)", $form);
     if ($resultado2 == 1) {
-        $ultimoregistro = $obj->correrConsulta('select top 1 * from MasterCliente where id_empresa = ? order by 1 desc', array($_POST['id_empresa']));
-        $arrayRe  = array();
-        foreach ($ultimoregistro as $key => $value) {
-            $arrayRe[] = $value;
-        }
-        if (count($arrayRe) > 0 ) {
-
-            $estado = array('estado' => true,'data' => $arrayRe);
-            $resultado = $objPuntoVenta->ejecutar("insert into cliente values(?,?,?,?,?,?,?)", $arrayRe); 
-            if ($resultado ==  1) {
-                $estado = array('estado' => true ,'data' => $arrayRe);
-            } else {
-                $estado = array('estado' => false ,'data' => $arrayRe);
-            } 
+        $resultado = $obj->ejecutar("insert into [puntodeventa].[dbo].[cliente]  select top 1 * from  [empresacontrol].[dbo].[mastercliente] order by 1 desc ");
+        if (($resultado + $resultado2)==2) {
+            $estado = array('estado' => true);
         }else {
-            $estado = array('estado' => false ,'data' => $arrayRe);
+            $estado = array('estado' => false);
         }
     } else {
         $estado = array('estado' => false);

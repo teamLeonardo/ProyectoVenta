@@ -29,24 +29,5 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    $contenedor.on('click', 'button.modal-activacion', function() {
-        e.preventDefault();
-        _this = $(this);
-        var datos = _this.parent().find('table thead tr th').map(function() {
-            return $(this).text();
-        }).get();
-        var arreglo = { 'identificador': _this.attr('href'), 'obj': datos };
-        $.ajax({
-            type: "GET",
-            url: "view/components/modales/modal_crear.php",
-            data: arreglo,
-            dataType: "html",
-            success: function(response) {
-                modalContainer.html(response);
-            }
-        });
 
-        console.log(arreglo);
-
-    });
 });

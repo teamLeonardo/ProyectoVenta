@@ -24610,3 +24610,12 @@ a.fc-more:hover {
     margin-bottom: 30px;
     background-size: 100%
 }
+
+.ui-selecting {
+    background: #FECA40;
+}
+
+.ui-selected {
+    background: #F39814;
+    color: white;
+}

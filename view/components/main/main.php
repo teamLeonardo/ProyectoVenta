@@ -187,6 +187,3 @@
   
     </div>
 </div>
-<div class="modal-conta">
-    
-</div>
