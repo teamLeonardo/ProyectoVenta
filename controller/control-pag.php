@@ -49,17 +49,15 @@ if ($_POST['id-pag'] == 'registro-usuario') {
     $form =  array(
         $_POST['nombre'], $_POST['apellido'],
         $_POST['DOCUMENTO'], $_POST['tipoCliente'],
-        $_POST['estado'], $_POST['id_empresa']
+         $_POST['id_empresa']
     );
 
-    $resultado2 = $obj->ejecutar("insert into MasterCliente values(?,?,?,?,?,?)", $form);
+    $resultado2 = $obj->ejecutar("sp_crearCliente ?,?,?,?,? ", $form);
+
     if ($resultado2 == 1) {
-        $resultado = $obj->ejecutar("insert into [puntodeventa].[dbo].[cliente]  select top 1 * from  [empresacontrol].[dbo].[mastercliente] order by 1 desc ");
-        if (($resultado + $resultado2)==2) {
+       
             $estado = array('estado' => true);
-        }else {
-            $estado = array('estado' => false);
-        }
+        
     } else {
         $estado = array('estado' => false);
     }
@@ -71,15 +69,32 @@ if ($_POST['id-pag'] == 'registro-usuario') {
         $_POST['DOCUMENTO'], $_POST['tipoCliente'],
         $_POST['estado'], $_POST['id_empresa'], $_POST['id_cliente']
     );
+    $form2 =  array(
+        $_POST['nombre'], $_POST['apellido'],
+        $_POST['DOCUMENTO'], $_POST['tipoCliente'],
+         $_POST['id_empresa'], $_POST['id_cliente']
+    );
+    
+    
+    $resultado2 = $obj->ejecutar("sp_upCliente ?,?,?,?,?,?", $form2);
 
-    $resultado = $objPuntoVenta->ejecutar("update cliente set nombre = ? , apellido = ? , DOCUMENTO = ? ,tipoCliente = ? ,estado = ? ,id_empresa = ? where id_cliente =?", $form);
-
-    $resultado2 = $obj->ejecutar("update MasterCliente set nombre = ? , apellido = ? , DOCUMENTO = ? ,tipoCliente = ? ,estado = ? ,id_empresa = ? where id_cliente =?", $form);
-
-    if ($resultado == 1 && $resultado2 == 1) {
+    if ($resultado2 == 1) {
         $estado = array('estado' => true, 'data' => $form);
     } else {
         $estado = array('estado' => false);
+    }
+    echo json_encode($estado);
+    exit;
+}
+else if ($_POST['id-pag'] == 'eiminacion-cliente') {
+    $form =  array($_POST['idcliente']);
+    
+    $resultado2 = $obj->ejecutar("sp_eiminarCliente ?", $form);
+
+    if ($resultado2 == 1) {
+        $estado = array('estado' => 1);
+    } else {
+        $estado = array('estado' => 0);
     }
     echo json_encode($estado);
     exit;

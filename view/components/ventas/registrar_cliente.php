@@ -21,6 +21,10 @@ $objVenta = new phppdo('PuntoDeVenta');
   var identificador = null;
   var selev = null;
   var $dialogo = $("#dialogoCiente");
+  $("#tabla-cliente tbody").bind("contextmenu", function(e) {
+
+    return false;
+  });
   $dialogo.dialog({
     autoOpen: false,
     show: {
@@ -76,44 +80,6 @@ $objVenta = new phppdo('PuntoDeVenta');
   $('#tabla-cliente').DataTable();
   //#endregion 
 
-  //#region form-update
-  $('#tabla-cliente').on('click', 'tr', function() {
-    $dialogo.dialog("close");
-    __this = $(this);
-    identificador = __this;
-    var createf = '';
-    var arrayFormulario = Array;
-    var $valore = __this.find('td').map(function() {
-      return $(this).text();
-    }).get();
-    var $campos = __this.closest('table').find('thead tr th').map(function() {
-      return $(this).text();
-    }).get();
-    createf += '<input type="hidden" name="id-pag" value="registro-cliente-update">';
-    for (let index = 0; index < $campos.length; index++) {
-
-      if (index == 0 || index == 6) {
-        var elemento = $campos[index];
-        var valore = $valore[index];
-
-        createf += '<label class="mt-1" for="' + elemento + '">' + elemento + '</label>';
-        createf += '<input class="form-control form-control-sm mb-2" name="' + elemento + '" readonly="readonly" id="' + elemento + '" type="text" value="' + valore + '">';
-
-      } else {
-        var elemento = $campos[index];
-        var valore = $valore[index];
-
-        createf += '<label class="mt-1" for="' + elemento + '">' + elemento + '</label>';
-        createf += '<input class="form-control form-control-sm mb-2" name="' + elemento + '" id="' + elemento + '" type="text" value="' + valore + '">';
-      }
-    }
-    createf += '<button type="submit" class="btn btn-primary" id="btn-upCliente">Actualizar</button>';
-    $('#dialogoCiente fieldset form#from-venta').html(createf);
-
-    $dialogo.dialog("open");
-
-  });
-  //#endregion
 
   //#region agregarCliente
   $('#dialogoCiente fieldset form#from-venta').on('click', 'button#btn-agregarCliente', function(e) {
@@ -164,6 +130,8 @@ $objVenta = new phppdo('PuntoDeVenta');
 
     e.preventDefault();
     __this = $(this);
+    console.log($('#from-venta').serialize());
+    
     $.ajax({
       type: "POST",
       url: urlProcesos,
@@ -173,23 +141,26 @@ $objVenta = new phppdo('PuntoDeVenta');
         alertify.warning('esperando....');
       },
       success: function(response) {
+        console.log(response.estado);
+        
         if (response.estado == true) {
-
+          console.log(response.data);
+          
           alertify.success('se actualizo Corectamente');
 
           identificador.replaceWith(function() {
             var datos = '<tr>';
-            datos += "<td>" + response.data[5] + "</td>";
+            datos += "<td>" + response.data[6] + "</td>";
             datos += "<td>" + response.data[0] + "</td>";
             datos += "<td>" + response.data[1] + "</td>";
             datos += "<td>" + response.data[2] + "</td>";
             datos += "<td>" + response.data[3] + "</td>";
             datos += "<td>" + response.data[4] + "</td>";
+            datos += "<td>" + response.data[5] + "</td>";
             datos += '</tr>';
 
             return datos;
           });
-          console.log();
 
 
         } else {
@@ -213,7 +184,7 @@ $objVenta = new phppdo('PuntoDeVenta');
       selev = $("tr.ui-selected").map(function() {
         return $(this).find('td:first-child').text();
       }).get();
-      
+
     }
   });
   //#endregion 
@@ -225,12 +196,24 @@ $objVenta = new phppdo('PuntoDeVenta');
       var barra = 100;
       var numeros = selev.length;
       var batotal = barra / numeros;
-      alertify.confirm("eliminacion",'seguro que quiere eliminar '+ numeros+' registros?',
+      alertify.confirm("eliminacion", 'seguro que quiere eliminar ' + numeros + ' registros?',
         function() {
+          contador = 0;
           selev.forEach(function(eleme) {
+            console.log(eleme);
             
+            $.ajax({
+              type: "post",
+              url: urlProcesos,
+              data: {'id-pag' : 'eiminacion-cliente','idcliente':eleme},
+              dataType: "json",
+              success: function (response) {
+                contador +=  response.estado;
+                console.log(contador);
+              }
+            });
           });
-          alertify.success('Ok');
+          alertify.success('se eliminaron los '+ contador+ ' registros');
 
         },
         function() {
@@ -239,6 +222,46 @@ $objVenta = new phppdo('PuntoDeVenta');
     }
   });
 
+  //#endregion
+
+  //#region form-update
+  $('#tabla-cliente tbody').on('mousedown', 'tr',function(e) {
+    if (e.which == 3) {
+      $dialogo.dialog("close");
+      __this = $(this);
+      identificador = __this;
+      var createf = '';
+      var arrayFormulario = Array;
+      var $valore = __this.find('td').map(function() {
+        return $(this).text();
+      }).get();
+      var $campos = __this.closest('table').find('thead tr th').map(function() {
+        return $(this).text();
+      }).get();
+      createf += '<input type="hidden" name="id-pag" value="registro-cliente-update">';
+      for (let index = 0; index < $campos.length; index++) {
+
+        if (index == 0 || index == 6) {
+          var elemento = $campos[index];
+          var valore = $valore[index];
+
+          createf += '<label class="mt-1" for="' + elemento + '">' + elemento + '</label>';
+          createf += '<input class="form-control form-control-sm mb-2" name="' + elemento + '" readonly="readonly" id="' + elemento + '" type="text" value="' + valore + '">';
+
+        } else {
+          var elemento = $campos[index];
+          var valore = $valore[index];
+
+          createf += '<label class="mt-1" for="' + elemento + '">' + elemento + '</label>';
+          createf += '<input class="form-control form-control-sm mb-2" name="' + elemento + '" id="' + elemento + '" type="text" value="' + valore + '">';
+        }
+      }
+      createf += '<button type="submit" class="btn btn-primary" id="btn-upCliente">Actualizar</button>';
+      $('#dialogoCiente fieldset form#from-venta').html(createf);
+
+      $dialogo.dialog("open");
+    }
+  });
   //#endregion
 </script>
 <div class="container-fluid mb-4">
@@ -260,7 +283,7 @@ $objVenta = new phppdo('PuntoDeVenta');
       </div>
     </div>
 
-    
+
 
   </div>
 </div>
@@ -273,7 +296,7 @@ $objVenta = new phppdo('PuntoDeVenta');
         <div class="table-responsive">
           <table class="table" id="tabla-cliente">
 
-            <?php $objVenta->listarTb("select * from cliente", $arrayName = array()) ?>
+            <?php $objVenta->listarTb("select * from cliente where estado = 3", $arrayName = array()) ?>
           </table>
         </div>
       </div>

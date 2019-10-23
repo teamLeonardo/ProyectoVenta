@@ -42,7 +42,6 @@ $objVenta = new phppdo('PuntoDeVenta');
     </div>
     <div class="zonaModal"></div>
     <script type="text/javascript" src="./assets/scripts/main.js"></script>
-
     <script src="lib/jquery.js"></script>
     <script src="lib/jquery-ui.js"></script>
     <script src="lib/popper.min.js"></script>
