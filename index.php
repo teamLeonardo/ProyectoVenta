@@ -1,7 +1,7 @@
 <?php
 session_start();
 include_once 'model/tablapdo.php';
-
+//lol
 $obj1 = new phppdo('master');
 
 //ver que base de tados tiene instalados
